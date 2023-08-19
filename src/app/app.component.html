@@ -1,0 +1,96 @@
+<p>
+  Hi, welcome to Re Chat! Please enter your answers based on the questions the chat bot asks, At the end will will present you with a Resume PDF.
+</p>
+<ng-container *ngIf="!showPDF">
+  <section class="msger">
+    <header class="msger-header">
+      <div class="msger-header-title">
+        <i class="fas fa-comment-alt"></i> Re Chat
+      </div>
+      <div class="msger-header-options">
+        <span><i class="fas fa-cog"></i></span>
+      </div>
+    </header>
+
+    <main class="msger-chat">
+
+      <div *ngFor="let answerId of answerCount">
+        <ng-container *ngTemplateOutlet="messageTemplate; context: { messageText: answerId }"></ng-container>
+      </div>
+
+    </main>
+
+    <form class="msger-inputarea" >
+      <input type="text" class="msger-input" placeholder="Enter your message..." #answer>
+      <button type="button" class="msger-send-btn" (click)="sendResponse(answer.value)">Send</button>
+    </form>
+  </section>
+</ng-container>
+
+
+
+
+<ng-template #messageTemplate let-messageText="messageText">
+  <div class="msg left-msg">
+
+
+    <div class="msg-bubble">
+
+
+      <div class="msg-text">
+        {{questionsAndUsersResponse[messageText].question}}
+      </div>
+    </div>
+  </div>
+
+  <div class="msg right-msg" *ngIf="questionsAndUsersResponse[messageText].answer">
+
+
+    <div class="msg-bubble" >
+
+
+      <div class="msg-text">
+        {{questionsAndUsersResponse[messageText].answer}}
+      </div>
+    </div>
+  </div>
+</ng-template>
+<ng-container *ngIf="showPDF">
+  <table>
+    <tr>
+      <th>Company</th>
+      <th>Contact</th>
+      <th>Country</th>
+    </tr>
+    <tr>
+      <td>Alfreds Futterkiste</td>
+      <td>Maria Anders</td>
+      <td>Germany</td>
+    </tr>
+    <tr>
+      <td>Centro comercial Moctezuma</td>
+      <td>Francisco Chang</td>
+      <td>Mexico</td>
+    </tr>
+    <tr>
+      <td>Ernst Handel</td>
+      <td>Roland Mendel</td>
+      <td>Austria</td>
+    </tr>
+    <tr>
+      <td>Island Trading</td>
+      <td>Helen Bennett</td>
+      <td>UK</td>
+    </tr>
+    <tr>
+      <td>Laughing Bacchus Winecellars</td>
+      <td>Yoshi Tannamuri</td>
+      <td>Canada</td>
+    </tr>
+    <tr>
+      <td>Magazzini Alimentari Riuniti</td>
+      <td>Giovanni Rovelli</td>
+      <td>Italy</td>
+    </tr>
+  </table>
+</ng-container>
