@@ -1,5 +1,6 @@
 <p>
-  Hi, welcome to Re Chat! Please enter your answers based on the questions the chat bot asks, At the end will will present you with a Resume PDF.
+  Hi, welcome to Re Chat! Please enter your answers based on the questions the chat bot asks, At the end will will
+  present you with a Resume PDF.
 </p>
 <ng-container *ngIf="!showPDF">
   <section class="msger">
@@ -20,9 +21,27 @@
 
     </main>
 
-    <form class="msger-inputarea" >
-      <input type="text" class="msger-input" placeholder="Enter your message..." #answer>
-      <button type="button" class="msger-send-btn" (click)="sendResponse(answer.value)">Send</button>
+    <form class="msger-inputarea">
+      {{questionsAndUsersResponse[countOfanswer].fields |json}}
+      <!-- <div *ngFor="let eachField of questionsAndUsersResponse[countOfanswer].fields">
+        <input [type]="eachField.type" name="eachField.key" [(ngModel)]="eachField.value" [ngModelOptions]="
+        {standalone: true}">
+      </div> -->
+      <div class="start-end-dates">
+        <div class="start-date-container" *ngFor="let eachField of questionsAndUsersResponse[countOfanswer].fields">
+          <label for="ids">{{eachField.name}}</label>
+          <input [type]="eachField.type" [name]="eachField.key" [(ngModel)]="eachField.value" [ngModelOptions]="
+          {standalone: true}">
+        </div>
+
+      </div>
+      <div class="text-area-submit">
+
+        <textarea type="text" class="msger-input" #answer>
+
+        </textarea>
+        <button type="button" class="msger-send-btn" (click)="sendResponse(answer.value)">Send</button>
+      </div>
     </form>
   </section>
 </ng-container>
@@ -46,7 +65,7 @@
   <div class="msg right-msg" *ngIf="questionsAndUsersResponse[messageText].answer">
 
 
-    <div class="msg-bubble" >
+    <div class="msg-bubble">
 
 
       <div class="msg-text">
@@ -56,41 +75,54 @@
   </div>
 </ng-template>
 <ng-container *ngIf="showPDF">
-  <table>
-    <tr>
-      <th>Company</th>
-      <th>Contact</th>
-      <th>Country</th>
-    </tr>
-    <tr>
-      <td>Alfreds Futterkiste</td>
-      <td>Maria Anders</td>
-      <td>Germany</td>
-    </tr>
-    <tr>
-      <td>Centro comercial Moctezuma</td>
-      <td>Francisco Chang</td>
-      <td>Mexico</td>
-    </tr>
-    <tr>
-      <td>Ernst Handel</td>
-      <td>Roland Mendel</td>
-      <td>Austria</td>
-    </tr>
-    <tr>
-      <td>Island Trading</td>
-      <td>Helen Bennett</td>
-      <td>UK</td>
-    </tr>
-    <tr>
-      <td>Laughing Bacchus Winecellars</td>
-      <td>Yoshi Tannamuri</td>
-      <td>Canada</td>
-    </tr>
-    <tr>
-      <td>Magazzini Alimentari Riuniti</td>
-      <td>Giovanni Rovelli</td>
-      <td>Italy</td>
-    </tr>
-  </table>
+  <div class="resume">
+    <header class="header">
+      <h1>Your Name</h1>
+      <ul class="contact-info">
+        <li>Phone: (123) 456-7890</li>
+        <li>Email: your.email@example.com</li>
+        <li>Location: City, State</li>
+      </ul>
+    </header>
+
+    <section class="summary">
+      <h2>Summary</h2>
+      <p>A passionate Full Stack Developer with expertise in Angular, Java, and SQL, seeking opportunities...</p>
+    </section>
+
+    <section class="skills">
+      <h2>Skills</h2>
+      <ul>
+        <li>Angular</li>
+        <li>Java</li>
+        <li>SQL</li>
+        <li>Communication</li>
+        <li>Teamwork</li>
+      </ul>
+    </section>
+
+    <section class="experience">
+      <h2>Experience</h2>
+      <div class="job">
+        <h3>Software Developer</h3>
+        <p>Company Name, City, State | Date - Date</p>
+        <ul>
+          <li>Developed and maintained web applications using Angular.</li>
+          <li>Implemented Java backend services for data processing.</li>
+          <li>Managed and optimized SQL databases for performance.</li>
+        </ul>
+      </div>
+      <!-- Add more job entries as needed -->
+    </section>
+
+    <section class="education">
+      <h2>Education</h2>
+      <div class="degree">
+        <h3>Bachelor of Computer Science</h3>
+        <p>University Name, City, State | Graduation Date</p>
+      </div>
+    </section>
+
+    <!-- Add more sections for Projects, Certifications, Awards, etc. -->
+  </div>
 </ng-container>

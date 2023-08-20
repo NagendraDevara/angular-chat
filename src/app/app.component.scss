@@ -1,0 +1,57 @@
+.resume {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+  }
+
+  .header {
+    text-align: center;
+  }
+
+  .contact-info {
+    list-style: none;
+    padding: 0;
+  }
+
+  .skills ul, .experience ul {
+    list-style: disc;
+    padding-left: 20px;
+  }
+
+  .job, .degree {
+    margin-bottom: 20px;
+  }
+// .answer-box{
+//   display: flex;
+//   flex-direction: column;
+//   width: 100%;
+// }
+  .start-end-dates{
+    display: flex;
+    gap: 5px;
+    // margin-left: auto;
+  }
+
+  // .answer-container{
+  //   display: block;
+  // }
+  .start-date-container , .end-date-container{
+    display: flex;
+    font-size: smaller;
+    flex-direction: column;
+  }
+  .text-area-submit{
+    display: flex;
+  }
+  .msger-inputarea{
+    flex-direction: column;
+  }
+
+//   input[type="date"]::before{
+//     color: #999;
+//     content: attr(placeholder);
+//     margin-right: 122px; // push the default placeholder out.. you can add more if you want
+// }
+// input[type="date"]:focus::before {
+//     content: "" !important;
+//     display: none;
+// }
