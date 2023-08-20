@@ -40,7 +40,11 @@
         <textarea type="text" class="msger-input" #answer>
 
         </textarea>
-        <button type="button" class="msger-send-btn" (click)="sendResponse(answer.value)">Send</button>
+        <button type="button" class="msger-send-btn" *ngIf="questionsAndUsersResponse[countOfanswer].fields"
+          title="Continue to add more Experience"
+          (click)="continueToAddMore(questionsAndUsersResponse[countOfanswer].fields,answer.value)"> ➕</button>
+        <button type="button" class="msger-send-btn" title="Click send and jump to another section"
+          (click)="sendResponse(answer.value)">Send</button>
       </div>
     </form>
   </section>
@@ -75,29 +79,29 @@
   </div>
 </ng-template>
 <ng-container *ngIf="showPDF">
+  {{groupedObjects|json}}
   <div class="resume">
     <header class="header">
       <h1>Your Name</h1>
       <ul class="contact-info">
-        <li>Phone: (123) 456-7890</li>
-        <li>Email: your.email@example.com</li>
-        <li>Location: City, State</li>
+        <li>Phone:{{groupedObjects['Contact Information']?.answer[0]}}</li>
+        <li>Email: {{groupedObjects['Contact Information']?.answer[1]}}</li>
+        <li>Location: {{groupedObjects['Contact Information']?.answer[2]}}</li>
       </ul>
     </header>
 
     <section class="summary">
       <h2>Summary</h2>
-      <p>A passionate Full Stack Developer with expertise in Angular, Java, and SQL, seeking opportunities...</p>
+      <p>
+        {{groupedObjects.summary[0].answer}}
+      </p>
     </section>
 
     <section class="skills">
       <h2>Skills</h2>
       <ul>
-        <li>Angular</li>
-        <li>Java</li>
-        <li>SQL</li>
-        <li>Communication</li>
-        <li>Teamwork</li>
+        <li *ngFor="let skill of groupedObjects.summary[0].skills">{{skill}}</li>
+
       </ul>
     </section>
 
