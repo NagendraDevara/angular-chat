@@ -82,11 +82,11 @@
   {{groupedObjects|json}}
   <div class="resume">
     <header class="header">
-      <h1>Your Name</h1>
+      <h1>{{groupedObjects.contactInfo[0]?.answer[0]}}</h1>
       <ul class="contact-info">
-        <li>Phone:{{groupedObjects['Contact Information']?.answer[0]}}</li>
-        <li>Email: {{groupedObjects['Contact Information']?.answer[1]}}</li>
-        <li>Location: {{groupedObjects['Contact Information']?.answer[2]}}</li>
+        <li>Phone:{{groupedObjects.contactInfo[0].answer[1] }}</li>
+        <li>Email: {{groupedObjects?.contactInfo[0]?.answer[2]}}</li>
+        <li>Location: {{groupedObjects?.contactInfo[0]?.answer[3]}}</li>
       </ul>
     </header>
 
@@ -100,33 +100,80 @@
     <section class="skills">
       <h2>Skills</h2>
       <ul>
-        <li *ngFor="let skill of groupedObjects.summary[0].skills">{{skill}}</li>
+        <li *ngFor="let skill of groupedObjects.skills[0].answer">{{skill}}</li>
 
       </ul>
     </section>
 
     <section class="experience">
       <h2>Experience</h2>
-      <div class="job">
-        <h3>Software Developer</h3>
-        <p>Company Name, City, State | Date - Date</p>
-        <ul>
+      <div class="job" *ngFor="let exp of groupedObjects.Experience ">
+        <h3>{{exp.fields[0].value}}</h3>
+        <p>{{exp.fields[1].value}} | {{exp.fields[2].value}} - {{exp.fields[3].value}}</p>
+        <div>
+          <p>
+            {{exp.answer}}
+          </p>
+        </div>
+        <!-- <ul>
           <li>Developed and maintained web applications using Angular.</li>
           <li>Implemented Java backend services for data processing.</li>
           <li>Managed and optimized SQL databases for performance.</li>
-        </ul>
+        </ul> -->
       </div>
       <!-- Add more job entries as needed -->
     </section>
 
     <section class="education">
       <h2>Education</h2>
-      <div class="degree">
-        <h3>Bachelor of Computer Science</h3>
-        <p>University Name, City, State | Graduation Date</p>
+      <div class="degree" *ngFor="let exp of groupedObjects.Education ">
+        <h3>{{exp.fields[0].value}}</h3>
+        <p>{{exp.fields[1].value}} | {{exp.fields[2].value}} - {{exp.fields[3].value}}</p>
+        <div>
+          <p>
+            {{exp.answer}}
+          </p>
+        </div>
       </div>
     </section>
+    <section class="projects">
+      <h2>Projects</h2>
+      <div class="degree" *ngFor="let exp of groupedObjects.Projects ">
+        <h3>{{exp.fields[0].value}}</h3>
+        <p> {{exp.fields[1].value}} - {{exp.fields[2].value}}</p>
+        <div>
+          <p>
+            {{exp.answer}}
+          </p>
+        </div>
+      </div>
+    </section>
+    <section class="certifications">
+      <h2>Certifications</h2>
+      <div class="degree" *ngFor="let exp of groupedObjects.Certifications ">
+        <h3>{{exp.fields[0].value}}</h3>
+        <p> {{exp.fields[1].value}} - {{exp.fields[2].value}}</p>
+        <div>
+          <p>
+            {{exp.answer}}
+          </p>
+        </div>
+      </div>
+    </section>
+    <section class="hobbies">
+      <h2>Hobbies</h2>
+      <ul>
+        <li *ngFor="let skill of groupedObjects.Hobbies[0].answer">{{skill}}</li>
 
+      </ul>
+    </section>
+    <section class="languages">
+      <h2>Languages</h2>
+      <ul>
+        <li *ngFor="let skill of groupedObjects.Languages[0].answer">{{skill}}</li>
+
+      </ul>
+    </section>
     <!-- Add more sections for Projects, Certifications, Awards, etc. -->
   </div>
 </ng-container>

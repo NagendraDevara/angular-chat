@@ -48,15 +48,15 @@ export class AppComponent {
       fields: [{ name: 'Certification Name', key: 'certificationName', value: '', type: 'text' }, { name: 'Start Date', key: 'certificatioStartDate', value: '', type: 'date' }, { name: 'End Date', key: 'certificatioEndDate', value: '', type: 'date' }]
 
     },
-    {
-      type: 'Awards',
-      question: "Awards and Achievements: Highlight any honors, awards, or recognition you've received in your career.",
-      answer: '',
+    // {
+    //   type: 'Awards',
+    //   question: "Awards and Achievements: Highlight any honors, awards, or recognition you've received in your career.",
+    //   answer: '',
 
-    },
+    // },
     {
-      type: 'Publications',
-      question: "Publications or Presentations: If applicable, mention any articles, research papers, or presentations you've contributed to.",
+      type: 'Hobbies',
+      question: "Hobbies: What do you like?",
       answer: '',
     },
     {
@@ -65,7 +65,7 @@ export class AppComponent {
       answer: '',
     },
     {
-      type: 'Contact Information',
+      type: 'contactInfo',
       question: "Contact Information: Include your name, phone number, email address, and location",
       answer: '',
     },
@@ -77,7 +77,7 @@ export class AppComponent {
   sendResponse(answer: any) {
     console.log(answer);
     const questionType = this.questionsAndUsersResponse[this.countOfanswer].type;
-    if (questionType == 'Contact Information' || questionType == 'skills') {
+    if (questionType == 'contactInfo' || questionType == 'skills' || questionType=='Hobbies') {
       answer = answer.split(',');
     }
     this.questionsAndUsersResponse[this.countOfanswer].answer = answer;
