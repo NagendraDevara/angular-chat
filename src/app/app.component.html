@@ -160,7 +160,7 @@
         </div>
       </div>
     </section>
-    <section class="hobbies">
+    <section class="hobbies" *ngIf="groupedObjects.Languages?.length>0">
       <h2>Hobbies</h2>
       <ul>
         <li *ngFor="let skill of groupedObjects.Hobbies[0].answer">{{skill}}</li>

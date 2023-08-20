@@ -75,9 +75,8 @@ export class AppComponent {
   groupedObjects:any;;
 
   sendResponse(answer: any) {
-    console.log(answer);
     const questionType = this.questionsAndUsersResponse[this.countOfanswer].type;
-    if (questionType == 'contactInfo' || questionType == 'skills' || questionType=='Hobbies') {
+    if (questionType == 'contactInfo' || questionType == 'skills' || questionType=='Hobbies' || questionType=='Languages') {
       answer = answer.split(',');
     }
     this.questionsAndUsersResponse[this.countOfanswer].answer = answer;
