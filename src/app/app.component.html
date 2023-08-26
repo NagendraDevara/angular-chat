@@ -1,8 +1,10 @@
-<p>
-  Hi, welcome to Re Chat! Please enter your answers based on the questions the chat bot asks, At the end will will
+<!-- <p>
+  Hi, welcome to Chat Resume! Please enter your answers based on the questions the chat bot asks, At the end will will
   present you with a Resume PDF.
-</p>
-<ng-container *ngIf="!showPDF">
+</p> -->
+<!-- <app-component-theme></app-component-theme> -->
+<!-- <a routerLink="/resume">Resume</a> -->
+<ng-container *ngIf="showPDF">
   <section class="msger">
     <header class="msger-header">
       <div class="msger-header-title">
@@ -21,8 +23,9 @@
 
     </main>
 
+    <p>Skip</p>
     <form class="msger-inputarea">
-      {{questionsAndUsersResponse[countOfanswer].fields |json}}
+      <!-- {{questionsAndUsersResponse[countOfanswer].fields |json}} -->
       <!-- <div *ngFor="let eachField of questionsAndUsersResponse[countOfanswer].fields">
         <input [type]="eachField.type" name="eachField.key" [(ngModel)]="eachField.value" [ngModelOptions]="
         {standalone: true}">
@@ -79,7 +82,6 @@
   </div>
 </ng-template>
 <ng-container *ngIf="showPDF">
-  {{groupedObjects|json}}
   <div class="resume">
     <header class="header">
       <h1>{{groupedObjects.contactInfo[0]?.answer[0]}}</h1>
@@ -177,3 +179,6 @@
     <!-- Add more sections for Projects, Certifications, Awards, etc. -->
   </div>
 </ng-container>
+
+<router-outlet></router-outlet>
+<app-chat-component></app-chat-component>
