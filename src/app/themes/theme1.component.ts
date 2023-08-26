@@ -1,4 +1,5 @@
 import { Component } from "@angular/core";
+import { Router } from "@angular/router";
 
 
 
@@ -8,5 +9,9 @@ import { Component } from "@angular/core";
     styleUrls: ['./theme1.component.scss']
 })
 export class theme1{
-
+resumeSummary: any;
+constructor(private router: Router){
+    const navigation = this.router.getCurrentNavigation();
+    this.resumeSummary = navigation?.extras?.state;
+}
 }

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {  NavigationExtras, Router } from '@angular/router';
 
 @Component({
   selector: 'app-chat-component',
@@ -72,8 +73,10 @@ export class ChatComponentComponent {
 
   ]
   showPDF: boolean = false;
-  groupedObjects:any;;
+  groupedObjects:any;
+constructor(private router:Router){
 
+}
   sendResponse(answer: any) {
     const questionType = this.questionsAndUsersResponse[this.countOfanswer].type;
     if (questionType == 'contactInfo' || questionType == 'skills' || questionType=='Hobbies' || questionType=='Languages') {
@@ -103,7 +106,10 @@ export class ChatComponentComponent {
       grouped[type].push(item);
       return grouped;
     }, {});
-    this.showPDF = true;
-
+    // this.showPDF = true;
+    const navigationExtras: NavigationExtras = {
+      state: this.groupedObjects
+    };
+    this.router.navigate(['./resume'],navigationExtras);
   }
 }

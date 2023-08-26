@@ -1,8 +1,12 @@
+<p>
+  Hi, welcome to Chat Resume! Please enter your answers based on the questions the chat bot asks, At the end will will
+  present you with a Resume PDF.
+</p>
 <ng-container>
     <section class="msger">
       <header class="msger-header">
         <div class="msger-header-title">
-          <i class="fas fa-comment-alt"></i> Re Chat
+          <i class="fas fa-comment-alt"></i> Chat Resume
         </div>
         <div class="msger-header-options">
           <span><i class="fas fa-cog"></i></span>
@@ -17,13 +21,8 @@
 
       </main>
 
-      <p>Skip</p>
+      <!-- <p>Skip</p> -->
       <form class="msger-inputarea">
-        <!-- {{questionsAndUsersResponse[countOfanswer].fields |json}} -->
-        <!-- <div *ngFor="let eachField of questionsAndUsersResponse[countOfanswer].fields">
-          <input [type]="eachField.type" name="eachField.key" [(ngModel)]="eachField.value" [ngModelOptions]="
-          {standalone: true}">
-        </div> -->
         <div class="start-end-dates">
           <div class="start-date-container" *ngFor="let eachField of questionsAndUsersResponse[countOfanswer].fields">
             <label for="ids">{{eachField.name}}</label>
@@ -34,7 +33,7 @@
         </div>
         <div class="text-area-submit">
 
-          <textarea type="text" class="msger-input" #answer>
+          <textarea type="text" class="msger-input" #answer contenteditable="true">
 
           </textarea>
           <button type="button" class="msger-send-btn" *ngIf="questionsAndUsersResponse[countOfanswer].fields"

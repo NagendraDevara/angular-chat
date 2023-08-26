@@ -16,140 +16,115 @@
 
                 <div class="flex flex-col gap-1.5	mx-auto p-10 pt-15">
 
-                    <h3 class="text-2xl font-bold">Olivia Wilson</h3>
+                    <h3 class="text-2xl font-bold">{{resumeSummary.contactInfo[0]?.answer[0]}}</h3>
                     <div class="font-bold text-sm	">
 
-                        Address |Mail| Phone Number
+                        {{resumeSummary?.contactInfo[0]?.answer[3]}} |{{resumeSummary?.contactInfo[0]?.answer[2]}}|
+                        {{resumeSummary?.contactInfo[0]?.answer[1]}}
                     </div>
-                    <div class="text-1xl font-bold">
+                    <div class="text-1xl ">
 
-                        CHEMICAL ENGINEER
+                        {{resumeSummary.summary[0].answer}}
                     </div>
                     <div>
 
-                        A practical Chemical Engineer with Significant Experience in Process Designs, I have worked with
-                        some organizations, ensuring a grounded approach to my profession.
                     </div>
                 </div>
                 <div class="max-w-full text-l font-bold p-1 pl-10 mt-4 bg-gray-300		 ">
                     WORK EXPERIENCE
                 </div>
+
                 <div class="flex flex-col gap-1.5	mx-auto p-10 pt-7">
-                    <div class="flex experiece-section">
-                        <p class="grow font-bold">Policy Manager | Monster Inc</p>
-                        <p class="none">Oct 2020-present</p>
-                    </div>
-                    <div>
-                        <ol>
-                            <li value="1"> Formulate and review policies as regards Industry Improvement</li>
-                            <li>Create a functional and technical application of set policies</li>
-                        </ol>
 
+                    <div class="job" *ngFor="let exp of resumeSummary.Experience ">
+                        <div class="flex experiece-section">
+                            <p class="grow font-bold">{{exp.fields[0].value}} | {{exp.fields[1].value}} </p>
+                            <p class="none">{{exp.fields[2].value | date:'longDate'}} - {{exp.fields[3].value  || ' present'}}</p>
+                        </div>
 
-                    </div>
-                    <div class="flex experiece-section">
-                        <p class="grow font-bold">Policy daskjadsjfa | jsdjads Inc</p>
-                        <p class="none">Oct 2010-Nov 2020</p>
-                    </div>
-                    <div>
-                        <ol>
-                            <li value="1"> Formulate and review policies as regards Industry Improvement</li>
-                            <li>Create a functional and technical application of set policies</li>
-                        </ol>
-
-
-                    </div>
+                        <div>
+                          <p>
+                            {{exp.answer}}
+                          </p>
+                        </div>
+                      </div>
                 </div>
                 <div class="max-w-full text-l font-bold p-1 pl-10 mt-4 bg-gray-300">
                     SKILLS
                 </div>
                 <div class="skills mx-auto p-10 pt-10">
-                    <ol>
-                        <li>Efficiency Under Pressure</li>
-                        <li>Talented Customer Services
-                        </li>
-                        <li>Critical Thinking</li>
-                    </ol>
+                    <ul>
+                        <li *ngFor="let skill of resumeSummary.skills[0].answer">{{skill}}</li>
+
+                      </ul>
                 </div>
                 <div class="max-w-full text-l font-bold p-1 pl-10 mt-4 bg-gray-300		 ">
                     EDUCATION
                 </div>
                 <div class="flex flex-col gap-1.5	mx-auto p-10 pt-7">
-                    <div class="flex experiece-section">
-                        <p class="grow font-bold">Policy Manager | Monster Inc</p>
-                        <p class="none">Oct 2020-present</p>
-                    </div>
-                    <div>
-                        <ol>
-                            <li value="1"> Formulate and review policies as regards Industry Improvement</li>
-                            <li>Create a functional and technical application of set policies</li>
-                        </ol>
 
+                    <div class="job" *ngFor="let exp of resumeSummary.Education ">
+                        <div class="flex experiece-section">
+                            <p class="grow font-bold">{{exp.fields[0].value}} | {{exp.fields[1].value}} </p>
+                            <p class="none">{{exp.fields[2].value | date:'longDate'}} - {{exp.fields[3].value  || ' present'}}</p>
+                        </div>
 
-                    </div>
-                    <div class="flex experiece-section">
-                        <p class="grow font-bold">Policy daskjadsjfa | jsdjads Inc</p>
-                        <p class="none">Oct 2010-Nov 2020</p>
-                    </div>
-                    <div>
-                        <ol>
-                            <li value="1"> Formulate and review policies as regards Industry Improvement</li>
-                            <li>Create a functional and technical application of set policies</li>
-                        </ol>
-
-
-                    </div>
+                        <div>
+                          <p>
+                            {{exp.answer}}
+                          </p>
+                        </div>
+                      </div>
                 </div>
-                <div class="max-w-full text-l font-bold p-1 pl-10 mt-4 bg-gray-300">
-                    INTERESTS
+                <div class="max-w-full text-l font-bold p-1 pl-10 mt-4 bg-gray-300		 ">
+                    PROJECTS
                 </div>
-                <div class="skills mx-auto p-10 pt-10">
-                    <ol>
-                        <li>Efficiency Under Pressure</li>
-                        <li>Talented Customer Services
-                        </li>
-                        <li>Critical Thinking</li>
-                    </ol>
+                <div class="flex flex-col gap-1.5	mx-auto p-10 pt-7">
+
+                    <div class="job" *ngFor="let exp of resumeSummary.Projects ">
+                        <div class="flex experiece-section">
+                            <p class="grow font-bold">{{exp.fields[0].value}}  </p>
+                            <p class="none">{{exp.fields[1].value | date:'longDate'}} - {{exp.fields[2].value  || ' present'}}</p>
+                        </div>
+
+                        <div>
+                          <p>
+                            {{exp.answer}}
+                          </p>
+                        </div>
+                      </div>
                 </div>
                 <div class="max-w-full text-l font-bold p-1 pl-10 mt-4 bg-gray-300		 ">
                     CERTIFICATIONS
                 </div>
                 <div class="flex flex-col gap-1.5	mx-auto p-10 pt-7">
-                    <div class="flex experiece-section">
-                        <p class="grow font-bold">Policy Manager | Monster Inc</p>
-                        <p class="none">Oct 2020-present</p>
-                    </div>
-                    <div>
-                        <ol>
-                            <li value="1"> Formulate and review policies as regards Industry Improvement</li>
-                            <li>Create a functional and technical application of set policies</li>
-                        </ol>
 
+                    <div class="job" *ngFor="let exp of resumeSummary.Certifications ">
+                        <div class="flex experiece-section">
+                            <p class="grow font-bold">{{exp.fields[0].value}}  </p>
+                            <p class="none">{{exp.fields[1].value | date:'longDate'}} - {{exp.fields[2].value  || ' present'}}</p>
+                        </div>
 
-                    </div>
-                    <div class="flex experiece-section">
-                        <p class="grow font-bold">Policy daskjadsjfa | jsdjads Inc</p>
-                        <p class="none">Oct 2010-Nov 2020</p>
-                    </div>
-                    <div>
-                        <ol>
-                            <li value="1"> Formulate and review policies as regards Industry Improvement</li>
-                            <li>Create a functional and technical application of set policies</li>
-                        </ol>
-
-
-                    </div>
+                        <div>
+                          <p>
+                            {{exp.answer}}
+                          </p>
+                        </div>
+                      </div>
                 </div>
                 <div class="max-w-full text-l font-bold p-1 pl-10 mt-4 bg-gray-300">
                     LANGUAGES
                 </div>
                 <div class="skills mx-auto p-10 pt-10">
-                    <ol>
-                        <li>Efficiency Under Pressure</li>
-                        <li>Talented Customer Services
-                        </li>
-                        <li>Critical Thinking</li>
-                    </ol>
+                   <pre>
+                    {{resumeSummary.Hobbies[0].answer}}
+                   </pre>
+                </div>
+                <div class="max-w-full text-l font-bold p-1 pl-10 mt-4 bg-gray-300">
+                    INTERESTS
+                </div>
+                <div class="skills mx-auto p-10 pt-10">
+                   <pre>{{resumeSummary.Languages[0].answer}}</pre>
                 </div>
             </div>
         </div>
