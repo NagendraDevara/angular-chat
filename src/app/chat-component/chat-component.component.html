@@ -33,13 +33,11 @@
         </div>
         <div class="text-area-submit">
 
-          <textarea type="text" class="msger-input" #answer contenteditable="true">
-
-          </textarea>
+          <textarea type="text" class="msger-input" #answer ></textarea>
           <button type="button" class="msger-send-btn" *ngIf="questionsAndUsersResponse[countOfanswer].fields"
             title="Continue to add more Experience"
             (click)="continueToAddMore(questionsAndUsersResponse[countOfanswer].fields,answer.value)"> ➕</button>
-          <button type="button" class="msger-send-btn" title="Click send and jump to another section"
+          <button type="submit" class="msger-send-btn" title="Click send and jump to another section"
             (click)="sendResponse(answer.value)">Send</button>
         </div>
       </form>

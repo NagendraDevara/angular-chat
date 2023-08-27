@@ -39,7 +39,7 @@
                     <div class="job" *ngFor="let exp of resumeSummary.Experience ">
                         <div class="flex experiece-section">
                             <p class="grow font-bold">{{exp.fields[0].value}} | {{exp.fields[1].value}} </p>
-                            <p class="none">{{exp.fields[2].value | date:'longDate'}} - {{exp.fields[3].value  || ' present'}}</p>
+                            <p class="none">{{exp.fields[2].value | date:'longDate'}} - {{exp.fields[3].value | date:'longDate'  || ' present'}}</p>
                         </div>
 
                         <div>
@@ -66,7 +66,7 @@
                     <div class="job" *ngFor="let exp of resumeSummary.Education ">
                         <div class="flex experiece-section">
                             <p class="grow font-bold">{{exp.fields[0].value}} | {{exp.fields[1].value}} </p>
-                            <p class="none">{{exp.fields[2].value | date:'longDate'}} - {{exp.fields[3].value  || ' present'}}</p>
+                            <p class="none">{{exp.fields[2].value | date:'longDate'}} - {{exp.fields[3].value| date:'longDate'  || ' present'}}</p>
                         </div>
 
                         <div>
@@ -84,7 +84,7 @@
                     <div class="job" *ngFor="let exp of resumeSummary.Projects ">
                         <div class="flex experiece-section">
                             <p class="grow font-bold">{{exp.fields[0].value}}  </p>
-                            <p class="none">{{exp.fields[1].value | date:'longDate'}} - {{exp.fields[2].value  || ' present'}}</p>
+                            <p class="none">{{exp.fields[1].value | date:'longDate'}} - {{exp.fields[2].value| date:'longDate'  || ' present'}}</p>
                         </div>
 
                         <div>
@@ -102,7 +102,7 @@
                     <div class="job" *ngFor="let exp of resumeSummary.Certifications ">
                         <div class="flex experiece-section">
                             <p class="grow font-bold">{{exp.fields[0].value}}  </p>
-                            <p class="none">{{exp.fields[1].value | date:'longDate'}} - {{exp.fields[2].value  || ' present'}}</p>
+                            <p class="none">{{exp.fields[1].value | date:'longDate'}} - {{exp.fields[2].value| date:'longDate'  || ' present'}}</p>
                         </div>
 
                         <div>

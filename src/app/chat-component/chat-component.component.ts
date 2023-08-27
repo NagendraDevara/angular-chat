@@ -79,7 +79,7 @@ constructor(private router:Router){
 }
   sendResponse(answer: any) {
     const questionType = this.questionsAndUsersResponse[this.countOfanswer].type;
-    if (questionType == 'contactInfo' || questionType == 'skills' || questionType=='Hobbies' || questionType=='Languages') {
+    if (questionType == 'contactInfo') {
       answer = answer.split(',');
     }
     this.questionsAndUsersResponse[this.countOfanswer].answer = answer;
