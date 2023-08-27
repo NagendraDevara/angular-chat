@@ -69,8 +69,8 @@ export class ChatComponentComponent {
       type: 'contactInfo',
       question: "Contact Information: Include your name, phone number, email address, and location",
       answer: '',
-    },
-
+      fields: [{ name: 'Name', key: 'userName', value: '', type: 'text' }, { name: 'Phone number', key: 'phoneNumber', value: '', type: 'text' }, { name: 'Email address', key: 'emailAddress', value: '', type: 'text' },{ name: 'Location', key: 'location', value: '', type: 'text' }]
+    }
   ]
   showPDF: boolean = false;
   groupedObjects:any;

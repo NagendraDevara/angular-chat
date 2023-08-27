@@ -16,11 +16,12 @@
 
                 <div class="flex flex-col gap-1.5	mx-auto p-10 pt-15">
 
-                    <h3 class="text-2xl font-bold">{{resumeSummary.contactInfo[0]?.answer[0]}}</h3>
+                    <h3 class="text-2xl font-bold">
+                        {{resumeSummary.contactInfo[0]?.fields[0].value}}
+                    </h3>
                     <div class="font-bold text-sm	">
+                        {{resumeSummary.contactInfo[0]?.fields[1].value}} | {{resumeSummary.contactInfo[0]?.fields[2].value}} | {{resumeSummary.contactInfo[0]?.fields[3].value}}
 
-                        {{resumeSummary?.contactInfo[0]?.answer[3]}} |{{resumeSummary?.contactInfo[0]?.answer[2]}}|
-                        {{resumeSummary?.contactInfo[0]?.answer[1]}}
                     </div>
                     <div class="text-1xl ">
 
@@ -53,10 +54,7 @@
                     SKILLS
                 </div>
                 <div class="skills mx-auto p-10 pt-10">
-                    <ul>
-                        <li *ngFor="let skill of resumeSummary.skills[0].answer">{{skill}}</li>
-
-                      </ul>
+                  {{resumeSummary.skills[0].answer}}
                 </div>
                 <div class="max-w-full text-l font-bold p-1 pl-10 mt-4 bg-gray-300		 ">
                     EDUCATION
@@ -116,15 +114,14 @@
                     LANGUAGES
                 </div>
                 <div class="skills mx-auto p-10 pt-10">
-                   <pre>
-                    {{resumeSummary.Hobbies[0].answer}}
-                   </pre>
+                    <p>{{resumeSummary.Hobbies[0].answer}}</p>
+
                 </div>
                 <div class="max-w-full text-l font-bold p-1 pl-10 mt-4 bg-gray-300">
                     INTERESTS
                 </div>
                 <div class="skills mx-auto p-10 pt-10">
-                   <pre>{{resumeSummary.Languages[0].answer}}</pre>
+                   <p>{{resumeSummary.Languages[0].answer}}</p>
                 </div>
             </div>
         </div>

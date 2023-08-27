@@ -1,24 +1,24 @@
 
 
-  html {
-    box-sizing: border-box;
-  }
+  // html {
+  //   box-sizing: border-box;
+  // }
 
-  *,
-  *:before,
-  *:after {
-    margin: 0;
-    padding: 0;
-    box-sizing: inherit;
-  }
+  // *,
+  // *:before,
+  // *:after {
+  //   margin: 0;
+  //   padding: 0;
+  //   box-sizing: inherit;
+  // }
 
-  body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-image: var(--body-bg);
-    font-family: Helvetica, sans-serif;
-  }
+  // body {
+  //   display: flex;
+  //   justify-content: center;
+  //   align-items: center;
+  //   background-image: var(--body-bg);
+  //   font-family: Helvetica, sans-serif;
+  // }
 
   .msger {
     display: flex;
