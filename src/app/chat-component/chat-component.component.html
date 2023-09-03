@@ -25,11 +25,12 @@
     <form >
       <section class="msger-inputarea">
 
+        <button *ngIf="questionsAndUsersResponse[countOfanswer].type !='contactInfo'"  class="self-end px-4 py-2  font-semibold text-sm bg-cyan-500 text-white rounded-full shadow-sm" (click)="skipQuestion()" >Skip</button>
         <div class="start-end-dates">
           <div class="start-date-container" *ngFor="let eachField of questionsAndUsersResponse[countOfanswer].fields">
             <label for="ids">{{eachField.name}}</label>
             <input [type]="eachField.type" [name]="eachField.key" [(ngModel)]="eachField.value" [ngModelOptions]="
-              {standalone: true}">
+              {standalone: true}" >
           </div>
 
         </div>
@@ -75,6 +76,17 @@
 
       <div class="msg-text">
         {{questionsAndUsersResponse[messageText].answer}}
+      </div>
+    </div>
+  </div>
+  <div class="msg right-msg" *ngIf="questionsAndUsersResponse[messageText].skipped">
+
+
+    <div class="msg-bubble">
+
+
+      <div class="msg-text">
+        Skipped!
       </div>
     </div>
   </div>
