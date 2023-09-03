@@ -136,8 +136,7 @@ export class ChatComponentComponent {
     objectToInsert.answer ='';
     this.questionsAndUsersResponse.splice(index+1, 0, objectToInsert);
     this.questionsAndUsersResponse[index+1].skipped = false;
-    this.countOfanswer++;
-    this.answerCount.push(this.countOfanswer);
+    this.answerCount.push(this.countOfanswer+1);
     this.editAnswer = { edit: true, index: index+1, section: '' }
     objectToInsert.question = 'Add one more ' + objectToInsert.type?.toLowerCase();
     this.editAnswer.section = 'Add one more ' + objectToInsert.type?.toLowerCase();

@@ -22,29 +22,29 @@
     </main>
 
     <!-- <p>Skip</p> -->
-    <form >
+    <form>
       <section class="msger-inputarea">
 
-        <button *ngIf="questionsAndUsersResponse[countOfanswer].type !='contactInfo'"  class="self-end px-4 py-2  font-semibold text-sm bg-cyan-500 text-white rounded-full shadow-sm" (click)="skipQuestion()" >Skip</button>
+        <button *ngIf="questionsAndUsersResponse[countOfanswer].type !='contactInfo'"
+          class="self-end px-4 py-2  font-semibold text-sm bg-cyan-500 text-white rounded-full shadow-sm"
+          (click)="skipQuestion()">Skip</button>
         <div class="start-end-dates">
           <div class="start-date-container" *ngFor="let eachField of questionsAndUsersResponse[countOfanswer].fields">
             <label for="ids">{{eachField.name}}</label>
             <input [type]="eachField.type" [name]="eachField.key" [(ngModel)]="eachField.value" [ngModelOptions]="
-              {standalone: true}" >
+              {standalone: true}">
           </div>
 
         </div>
-        <div class="text-area-submit" *ngIf="questionsAndUsersResponse[countOfanswer].type !='contactInfo';else other" >
+        <div class="text-area-submit" *ngIf="questionsAndUsersResponse[countOfanswer].type !='contactInfo';else other">
 
           <textarea type="text" class="msger-input" #answer></textarea>
-          <!-- <button type="button" class="msger-send-btn" *ngIf="questionsAndUsersResponse[countOfanswer].fields"
-            title="Continue to add more Experience"
-            (click)="continueToAddMore(questionsAndUsersResponse[countOfanswer].fields,answer.value)"> ➕</button> -->
           <button type="submit" class="msger-send-btn" title="Click send and jump to another section"
             (click)="sendResponse(answer.value)">Send</button>
         </div>
         <ng-template #other>
-          <button  class="self-end px-4 py-2  font-semibold text-sm bg-cyan-500 text-white rounded-full shadow-sm" (click)="processTheData()">Submit</button>
+          <button class="self-end px-4 py-2  font-semibold text-sm bg-cyan-500 text-white rounded-full shadow-sm"
+            (click)="processTheData()">Submit</button>
         </ng-template>
       </section>
 
@@ -76,29 +76,42 @@
 
 
       <div class="msg-text">
+        <ol *ngFor="let eachField of questionsAndUsersResponse[messageText].fields">
+          <li><b>{{eachField.name}}</b>: {{eachField.type=='date' ?(eachField.value| date:'longDate' ):eachField.value}}
+          </li>
+        </ol>
         {{questionsAndUsersResponse[messageText].answer}}
-        <button *ngIf="questionsAndUsersResponse[messageText].fields"  class="self-end px-4 py-2  font-semibold text-sm bg-cyan-500 text-white rounded-full shadow-sm" (click)="continueToAddMoreTotheEditedOne(messageText)" title="Add one more response">➕</button>
-        <button  (click)="editSkippedQuestion(questionsAndUsersResponse[messageText],msgIndex)"  class="self-end px-4 py-2  font-semibold text-sm bg-cyan-500 text-white rounded-full shadow-sm"  title="Edit the response">🖊</button>
+        <button *ngIf="questionsAndUsersResponse[messageText].fields"
+          class="self-end px-4 py-2  font-semibold text-sm bg-cyan-500 text-white rounded-full shadow-sm"
+          (click)="continueToAddMoreTotheEditedOne(messageText)" title="Add one more response">➕</button>
+        <button (click)="editSkippedQuestion(questionsAndUsersResponse[messageText],msgIndex)"
+          class="self-end px-4 py-2  font-semibold text-sm bg-cyan-500 text-white rounded-full shadow-sm"
+          title="Edit the response">🖊 </button>
       </div>
     </div>
   </div>
-  <div class="msg right-msg" *ngIf="questionsAndUsersResponse[messageText].skipped">
+  <ng-container>
+
+    <div class="msg right-msg" *ngIf="questionsAndUsersResponse[messageText].skipped">
 
 
-    <div class="msg-bubble">
+      <div class="msg-bubble">
 
 
-      <div class="msg-text">
-        Skipped!
-        <button  (click)="editSkippedQuestion(questionsAndUsersResponse[messageText],msgIndex)"  class="self-end px-4 py-2  font-semibold text-sm bg-cyan-500 text-white rounded-full shadow-sm"  title="Edit the response">🖊</button>
+        <div class="msg-text">
+          Skipped!
+          <button (click)="editSkippedQuestion(questionsAndUsersResponse[messageText],msgIndex)"
+            class="self-end px-4 py-2  font-semibold text-sm bg-cyan-500 text-white rounded-full shadow-sm"
+            title="Edit the response">🖊</button>
 
+        </div>
       </div>
     </div>
-  </div>
+  </ng-container>
   <div class="msg right-msg" *ngIf="editAnswer.edit && messageText ===editAnswer.index">
 
 
-    <ng-container  *ngTemplateOutlet="editTheAnswer;" ></ng-container>
+    <ng-container *ngTemplateOutlet="editTheAnswer;"></ng-container>
   </div>
 
 </ng-template>
@@ -107,10 +120,19 @@
   <form *ngIf="editAnswer.edit" class="w-full">
     <section class="msger-inputarea">
       <p>Question : {{editAnswer.section}}</p>
+      <div class="start-date-container" *ngFor="let eachField of questionsAndUsersResponse[countOfanswer].fields">
+        <label for="ids">{{eachField.name}}</label>
+        <input [type]="eachField.type" [name]="eachField.key" [(ngModel)]="eachField.value" [ngModelOptions]="
+          {standalone: true}">
+      </div>
       <textarea type="text" class="msger-input" #editAnswerText></textarea>
-      <button   class="self-end px-4 py-2  font-semibold text-sm bg-cyan-500 text-white rounded-full shadow-sm" (click)="cancelEdit()" >Cancel Edit</button>
-    <button type="submit" class="msger-send-btn" title="Click send and jump to another section"
-      (click)="sendEditedResponse(editAnswerText.value,editAnswer.index)">Send</button>
-      </section>
+      <div class="flex justify-end">
+
+        <button type="submit" class="msger-send-btn" title="Click send and jump to another section"
+          (click)="cancelEdit()">Cancel</button>
+        <button type="submit" class="msger-send-btn" title="Click send and jump to another section"
+          (click)="sendEditedResponse(editAnswerText.value,editAnswer.index)">Send</button>
+      </div>
+    </section>
   </form>
 </ng-template>
