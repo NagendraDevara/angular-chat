@@ -83,7 +83,7 @@
         {{questionsAndUsersResponse[messageText].answer}}
         <button *ngIf="questionsAndUsersResponse[messageText].fields"
           class="self-end px-4 py-2  font-semibold text-sm bg-cyan-500 text-white rounded-full shadow-sm"
-          (click)="continueToAddMoreTotheEditedOne(messageText)" title="Add one more response">➕</button>
+          (click)="continueToAddMore(msgIndex)" title="Add one more response">➕</button>
         <button (click)="editSkippedQuestion(questionsAndUsersResponse[messageText],msgIndex)"
           class="self-end px-4 py-2  font-semibold text-sm bg-cyan-500 text-white rounded-full shadow-sm"
           title="Edit the response">🖊 </button>
@@ -120,7 +120,7 @@
   <form *ngIf="editAnswer.edit" class="w-full">
     <section class="msger-inputarea">
       <p>Question : {{editAnswer.section}}</p>
-      <div class="start-date-container" *ngFor="let eachField of questionsAndUsersResponse[countOfanswer].fields">
+      <div class="start-date-container" *ngFor="let eachField of questionsAndUsersResponse[indexToBeShown].fields">
         <label for="ids">{{eachField.name}}</label>
         <input [type]="eachField.type" [name]="eachField.key" [(ngModel)]="eachField.value" [ngModelOptions]="
           {standalone: true}">
@@ -130,9 +130,9 @@
 
         <button type="submit" class="msger-send-btn" title="Click send and jump to another section"
           (click)="cancelEdit()">Cancel</button>
-        <button type="submit" class="msger-send-btn" title="Click send and jump to another section"
-          (click)="sendEditedResponse(editAnswerText.value,editAnswer.index)">Send</button>
-      </div>
+          <button type="submit" class="msger-send-btn" title="Click send and jump to another section"
+            (click)="sendAdditionalResponse(editAnswerText.value,editAnswer.index+1)">Send</button>
+        </div>
     </section>
   </form>
 </ng-template>

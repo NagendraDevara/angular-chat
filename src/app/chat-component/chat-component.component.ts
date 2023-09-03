@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 
 @Component({
@@ -84,7 +84,8 @@ export class ChatComponentComponent {
   showPDF: boolean = false;
   groupedObjects: any;
   editAnswer: { section: any, edit: boolean; index: any; } = { section: '', edit: false, index: 0 };
-  constructor(private router: Router) {
+  indexToBeShown: number =0;
+  constructor(private router: Router,private cdr:ChangeDetectorRef) {
 
   }
   sendResponse(answer: any) {
@@ -98,11 +99,14 @@ export class ChatComponentComponent {
 
     }
   }
-  continueToAddMore(type: any, answer: string) {
-    const objectToInsert = structuredClone(this.questionsAndUsersResponse[this.countOfanswer]);
+  continueToAddMore(index: any) {
+    const objectToInsert = structuredClone(this.questionsAndUsersResponse[index]);
     objectToInsert.question = 'Add one more ' + objectToInsert.type?.toLowerCase();
-    this.sendResponse(answer);
-    this.questionsAndUsersResponse.splice(this.countOfanswer, 0, objectToInsert);
+    this.sendResponse('');
+    this.indexToBeShown =index+1;
+    this.questionsAndUsersResponse.splice(this.indexToBeShown, 0, objectToInsert);
+    this.editAnswer = { edit: true, index: this.indexToBeShown, section:'saddsa' }
+
   }
 
   processTheData() {
@@ -131,17 +135,7 @@ export class ChatComponentComponent {
     console.log({ messageId });
     this.editAnswer = { edit: true, index: messageId, section: skippedAnswer?.question }
   }
-  continueToAddMoreTotheEditedOne(index: any) {
-    const objectToInsert = structuredClone(this.questionsAndUsersResponse[index]);
-    objectToInsert.answer ='';
-    this.questionsAndUsersResponse.splice(index+1, 0, objectToInsert);
-    this.questionsAndUsersResponse[index+1].skipped = false;
-    this.answerCount.push(this.countOfanswer+1);
-    this.editAnswer = { edit: true, index: index+1, section: '' }
-    objectToInsert.question = 'Add one more ' + objectToInsert.type?.toLowerCase();
-    this.editAnswer.section = 'Add one more ' + objectToInsert.type?.toLowerCase();
 
-  }
   sendEditedResponse(value: any, index: any) {
     this.questionsAndUsersResponse[index].answer = value;
     this.questionsAndUsersResponse[index].skipped = false;
@@ -149,6 +143,11 @@ export class ChatComponentComponent {
   }
   cancelEdit() {
     this.editAnswer = { edit: false, index: 0, section: '' };
+
+  }
+  sendAdditionalResponse(answer:any,index:any) {
+
+    this.editAnswer = { edit: false, index: 0, section: '' }
 
   }
 }
