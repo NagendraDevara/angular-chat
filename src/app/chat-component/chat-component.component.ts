@@ -83,7 +83,7 @@ export class ChatComponentComponent {
   ]
   showPDF: boolean = false;
   groupedObjects: any;
-  editAnswer: { section: any, edit: boolean; index: any; } = { section: '', edit: false, index: 0 };
+  editAnswer: { section: any, edit: boolean; index: any; edittheSameAnswer ?:any} = { section: '', edit: false, index: 0,edittheSameAnswer:false };
   indexToBeShown: number =0;
   constructor(private router: Router,private cdr:ChangeDetectorRef) {
 
@@ -105,7 +105,7 @@ export class ChatComponentComponent {
     this.sendResponse('');
     this.indexToBeShown =index+1;
     this.questionsAndUsersResponse.splice(this.indexToBeShown, 0, objectToInsert);
-    this.editAnswer = { edit: true, index: this.indexToBeShown, section:'saddsa' }
+    this.editAnswer = { edit: true, index: this.indexToBeShown, section:'saddsa',edittheSameAnswer:false }
 
   }
 
@@ -133,7 +133,7 @@ export class ChatComponentComponent {
   editSkippedQuestion(skippedAnswer: any, messageId: any) {
     console.log({ skippedAnswer });
     console.log({ messageId });
-    this.editAnswer = { edit: true, index: messageId, section: skippedAnswer?.question }
+    this.editAnswer = { edit: true, index: messageId, section: skippedAnswer?.question,edittheSameAnswer:true }
   }
 
   sendEditedResponse(value: any, index: any) {
@@ -142,7 +142,7 @@ export class ChatComponentComponent {
     this.editAnswer = { edit: false, index: index, section: '' };
   }
   cancelEdit() {
-    this.editAnswer = { edit: false, index: 0, section: '' };
+    this.editAnswer = { edit: false, index: 0, section: '',edittheSameAnswer:false };
 
   }
   sendAdditionalResponse(answer:any,index:any) {

@@ -81,10 +81,10 @@
           </li>
         </ol>
         {{questionsAndUsersResponse[messageText].answer}}
-        <button *ngIf="questionsAndUsersResponse[messageText].fields"
+        <button *ngIf="questionsAndUsersResponse[messageText].fields" type="button"
           class="self-end px-4 py-2  font-semibold text-sm bg-cyan-500 text-white rounded-full shadow-sm"
           (click)="continueToAddMore(msgIndex)" title="Add one more response">➕</button>
-        <button (click)="editSkippedQuestion(questionsAndUsersResponse[messageText],msgIndex)"
+        <button (click)="editSkippedQuestion(questionsAndUsersResponse[messageText],msgIndex)" type="button"
           class="self-end px-4 py-2  font-semibold text-sm bg-cyan-500 text-white rounded-full shadow-sm"
           title="Edit the response">🖊 </button>
       </div>
@@ -128,11 +128,13 @@
       <textarea type="text" class="msger-input" #editAnswerText></textarea>
       <div class="flex justify-end">
 
-        <button type="submit" class="msger-send-btn" title="Click send and jump to another section"
+        <button type="button" class="msger-send-btn" title="Click send and jump to another section"
           (click)="cancelEdit()">Cancel</button>
-          <button type="submit" class="msger-send-btn" title="Click send and jump to another section"
-            (click)="sendAdditionalResponse(editAnswerText.value,editAnswer.index+1)">Send</button>
-        </div>
+        <button type="button" *ngIf='!editAnswer.edittheSameAnswer' class="msger-send-btn" title="Click send and jump to another section"
+          (click)="sendAdditionalResponse(editAnswerText.value,editAnswer.index+1)">Send</button>
+        <button *ngIf='editAnswer.edittheSameAnswer' type="button" class="msger-send-btn" title="Click send and jump to another section"
+          (click)="sendEditedResponse(editAnswerText.value,editAnswer.index)">Send</button>
+      </div>
     </section>
   </form>
 </ng-template>
