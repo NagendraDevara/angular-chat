@@ -77,8 +77,8 @@
 
       <div class="msg-text">
         {{questionsAndUsersResponse[messageText].answer}}
-        <button *ngIf="questionsAndUsersResponse[messageText].fields"  class="self-end px-4 py-2  font-semibold text-sm bg-cyan-500 text-white rounded-full shadow-sm" (click)="continueToAddMoreTotheEditedOne(messageText)" >➕</button>
-        <button  (click)="editSkippedQuestion(questionsAndUsersResponse[messageText],msgIndex)"  class="self-end px-4 py-2  font-semibold text-sm bg-cyan-500 text-white rounded-full shadow-sm"  >📝</button>
+        <button *ngIf="questionsAndUsersResponse[messageText].fields"  class="self-end px-4 py-2  font-semibold text-sm bg-cyan-500 text-white rounded-full shadow-sm" (click)="continueToAddMoreTotheEditedOne(messageText)" title="Add one more response">➕</button>
+        <button  (click)="editSkippedQuestion(questionsAndUsersResponse[messageText],msgIndex)"  class="self-end px-4 py-2  font-semibold text-sm bg-cyan-500 text-white rounded-full shadow-sm"  title="Edit the response">🖊</button>
       </div>
     </div>
   </div>
@@ -90,7 +90,7 @@
 
       <div class="msg-text">
         Skipped!
-        <button  (click)="editSkippedQuestion(questionsAndUsersResponse[messageText],msgIndex)"  class="self-end px-4 py-2  font-semibold text-sm bg-cyan-500 text-white rounded-full shadow-sm"  >📝</button>
+        <button  (click)="editSkippedQuestion(questionsAndUsersResponse[messageText],msgIndex)"  class="self-end px-4 py-2  font-semibold text-sm bg-cyan-500 text-white rounded-full shadow-sm"  title="Edit the response">🖊</button>
 
       </div>
     </div>
@@ -104,7 +104,7 @@
 </ng-template>
 
 <ng-template #editTheAnswer>
-  <form *ngIf="editAnswer.edit">
+  <form *ngIf="editAnswer.edit" class="w-full">
     <section class="msger-inputarea">
       <p>Question : {{editAnswer.section}}</p>
       <textarea type="text" class="msger-input" #editAnswerText></textarea>

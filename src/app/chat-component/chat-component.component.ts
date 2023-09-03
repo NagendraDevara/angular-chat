@@ -133,11 +133,11 @@ export class ChatComponentComponent {
   }
   continueToAddMoreTotheEditedOne(index: any) {
     const objectToInsert = structuredClone(this.questionsAndUsersResponse[index]);
+    objectToInsert.answer ='';
     this.questionsAndUsersResponse.splice(index+1, 0, objectToInsert);
     this.questionsAndUsersResponse[index+1].skipped = false;
     this.countOfanswer++;
     this.answerCount.push(this.countOfanswer);
-
     this.editAnswer = { edit: true, index: index+1, section: '' }
     objectToInsert.question = 'Add one more ' + objectToInsert.type?.toLowerCase();
     this.editAnswer.section = 'Add one more ' + objectToInsert.type?.toLowerCase();
