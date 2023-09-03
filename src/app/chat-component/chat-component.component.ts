@@ -83,7 +83,7 @@ export class ChatComponentComponent {
   ]
   showPDF: boolean = false;
   groupedObjects: any;
-  editAnswer: {section:any, edit: boolean; index: any; }={section:'',edit:false,index:0};
+  editAnswer: { section: any, edit: boolean; index: any; } = { section: '', edit: false, index: 0 };
   constructor(private router: Router) {
 
   }
@@ -126,17 +126,30 @@ export class ChatComponentComponent {
     this.countOfanswer++;
     this.answerCount.push(this.countOfanswer);
   }
-  editSkippedQuestion(skippedAnswer:any,messageId:any){
-    console.log({skippedAnswer});
-    console.log({messageId});
-    this.editAnswer ={edit:true,index:messageId,section:skippedAnswer?.question}
+  editSkippedQuestion(skippedAnswer: any, messageId: any) {
+    console.log({ skippedAnswer });
+    console.log({ messageId });
+    this.editAnswer = { edit: true, index: messageId, section: skippedAnswer?.question }
   }
-  sendEditedResponse(value:any,index:any){
+  continueToAddMoreTotheEditedOne(index: any) {
+    const objectToInsert = structuredClone(this.questionsAndUsersResponse[index]);
+    this.questionsAndUsersResponse.splice(index+1, 0, objectToInsert);
+    this.questionsAndUsersResponse[index+1].skipped = false;
+    this.countOfanswer++;
+    this.answerCount.push(this.countOfanswer);
+
+    this.editAnswer = { edit: true, index: index+1, section: '' }
+    objectToInsert.question = 'Add one more ' + objectToInsert.type?.toLowerCase();
+    this.editAnswer.section = 'Add one more ' + objectToInsert.type?.toLowerCase();
+
+  }
+  sendEditedResponse(value: any, index: any) {
     this.questionsAndUsersResponse[index].answer = value;
-    this.questionsAndUsersResponse[index].skipped =false;
-    this.editAnswer ={edit:false,index:index,section:''};
+    this.questionsAndUsersResponse[index].skipped = false;
+    this.editAnswer = { edit: false, index: index, section: '' };
   }
-  cancelEdit(){
+  cancelEdit() {
+    this.editAnswer = { edit: false, index: 0, section: '' };
 
   }
 }
