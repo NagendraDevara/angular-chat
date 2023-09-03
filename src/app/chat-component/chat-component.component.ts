@@ -83,14 +83,13 @@ export class ChatComponentComponent {
   ]
   showPDF: boolean = false;
   groupedObjects: any;
+  editAnswer: {section:any, edit: boolean; index: any; }={section:'',edit:false,index:0};
   constructor(private router: Router) {
 
   }
   sendResponse(answer: any) {
     const questionType = this.questionsAndUsersResponse[this.countOfanswer].type;
-    if (questionType == 'contactInfo') {
-      answer = answer.split(',');
-    }
+
     this.questionsAndUsersResponse[this.countOfanswer].answer = answer;
     this.countOfanswer++;
     this.answerCount.push(this.countOfanswer);
@@ -126,5 +125,18 @@ export class ChatComponentComponent {
     this.questionsAndUsersResponse[this.countOfanswer].skipped = true;
     this.countOfanswer++;
     this.answerCount.push(this.countOfanswer);
+  }
+  editSkippedQuestion(skippedAnswer:any,messageId:any){
+    console.log({skippedAnswer});
+    console.log({messageId});
+    this.editAnswer ={edit:true,index:messageId,section:skippedAnswer?.question}
+  }
+  sendEditedResponse(value:any,index:any){
+    this.questionsAndUsersResponse[index].answer = value;
+    this.questionsAndUsersResponse[index].skipped =false;
+    this.editAnswer ={edit:false,index:index,section:''};
+  }
+  cancelEdit(){
+
   }
 }

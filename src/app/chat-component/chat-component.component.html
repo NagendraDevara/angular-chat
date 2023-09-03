@@ -15,15 +15,15 @@
 
     <main class="msger-chat">
 
-      <div *ngFor="let answerId of answerCount">
-        <ng-container *ngTemplateOutlet="messageTemplate; context: { messageText: answerId }"></ng-container>
+      <div *ngFor="let answerId of answerCount;let i = index">
+        <ng-container *ngTemplateOutlet="messageTemplate; context: { messageText: answerId,index:i }"></ng-container>
       </div>
 
     </main>
 
     <!-- <p>Skip</p> -->
     <form >
-      <section class="msger-inputarea">
+      <section class="msger-inputarea" *ngIf="!editAnswer.edit">
 
         <button *ngIf="questionsAndUsersResponse[countOfanswer].type !='contactInfo'"  class="self-end px-4 py-2  font-semibold text-sm bg-cyan-500 text-white rounded-full shadow-sm" (click)="skipQuestion()" >Skip</button>
         <div class="start-end-dates">
@@ -49,13 +49,26 @@
       </section>
 
     </form>
+    <form *ngIf="editAnswer.edit">
+      <section class="msger-inputarea">
+        <b>Editing</b>
+        <p>Question : {{editAnswer.section}}</p>
+        <textarea type="text" class="msger-input" #editAnswerText></textarea>
+        <button   class="self-end px-4 py-2  font-semibold text-sm bg-cyan-500 text-white rounded-full shadow-sm" (click)="cancelEdit()" >Cancel Edit</button>
+        <button type="button" class="msger-send-btn" *ngIf="questionsAndUsersResponse[editAnswer.index].fields"
+        title="Continue to add more Experience"
+        (click)="continueToAddMore(questionsAndUsersResponse[editAnswer.index].fields,editAnswerText.value)"> ➕</button>
+      <button type="submit" class="msger-send-btn" title="Click send and jump to another section"
+        (click)="sendEditedResponse(editAnswerText.value,editAnswer.index)">Send</button>
+        </section>
+    </form>
   </section>
 </ng-container>
 
 
 
 
-<ng-template #messageTemplate let-messageText="messageText">
+<ng-template #messageTemplate let-messageText="messageText" let-msgIndex="index">
   <div class="msg left-msg">
 
 
@@ -85,7 +98,7 @@
     <div class="msg-bubble">
 
 
-      <div class="msg-text">
+      <div class="msg-text" (click)="editSkippedQuestion(questionsAndUsersResponse[messageText],msgIndex)">
         Skipped!
       </div>
     </div>
