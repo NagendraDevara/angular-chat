@@ -11,8 +11,14 @@ section{
 }
 .bg-div{
     background-color: rgb(187, 179, 179);
-    padding: 0.4em;
+    // padding-top: 0.1em;
+    // padding-bottom: 0.1em;
     font-weight: 550;
+    line-height: 1.6rem;
+    p{
+        margin-left: 0.4rem;
+        font-size: 0.9rem;
+    }
 }
 .info-heading{
     font-weight: 550;
