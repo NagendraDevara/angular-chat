@@ -39,7 +39,7 @@
         <div class="text-area-submit" *ngIf="questionsAndUsersResponse[countOfanswer].type !='contactInfo';else other">
 
           <textarea type="text" class="msger-input" #answer id="input-text"></textarea>
-          <button type="submit" class="msger-send-btn" title="Click send and jump to another section"
+          <button type="submit" class="msger-send-btn" title="Click send and jump to another  section"
             (click)="sendResponse(answer.value)">Send</button>
         </div>
         <ng-template #other>
