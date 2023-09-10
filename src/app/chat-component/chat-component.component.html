@@ -26,7 +26,7 @@
       <section class="msger-inputarea">
 
         <button *ngIf="questionsAndUsersResponse[countOfanswer].type !='contactInfo'"
-          class="self-end px-4 py-2  font-semibold text-sm bg-cyan-500 text-white rounded-full shadow-sm"
+          class="skip-button"
           (click)="skipQuestion()">Skip</button>
         <div class="start-end-dates">
           <div class="start-date-container" *ngFor="let eachField of questionsAndUsersResponse[countOfanswer].fields">
@@ -38,7 +38,7 @@
         </div>
         <div class="text-area-submit" *ngIf="questionsAndUsersResponse[countOfanswer].type !='contactInfo';else other">
 
-          <textarea type="text" class="msger-input" #answer></textarea>
+          <textarea type="text" class="msger-input" #answer id="input-text"></textarea>
           <button type="submit" class="msger-send-btn" title="Click send and jump to another section"
             (click)="sendResponse(answer.value)">Send</button>
         </div>
@@ -76,11 +76,14 @@
 
 
       <div class="msg-text">
-        <ol *ngFor="let eachField of questionsAndUsersResponse[messageText].fields">
-          <li><b>{{eachField.name}}</b>: {{eachField.type=='date' ?(eachField.value| date:'longDate' ):eachField.value}}
-          </li>
-        </ol>
-        {{questionsAndUsersResponse[messageText].answer}}
+        <ul >
+          <ng-container *ngFor="let eachField of questionsAndUsersResponse[messageText].fields">
+
+            <li><b>{{eachField.name}}</b>: {{eachField.type=='date' ?(eachField.value| date:'longDate' ):eachField.value}}
+            </li>
+          </ng-container>
+        </ul>
+        <span>{{questionsAndUsersResponse[messageText].answer}}</span>
         <button *ngIf="questionsAndUsersResponse[messageText].fields" type="button"
           class="self-end px-4 py-2  font-semibold text-sm bg-cyan-500 text-white rounded-full shadow-sm"
           (click)="continueToAddMore(msgIndex)" title="Add one more response">➕</button>
@@ -108,7 +111,7 @@
       </div>
     </div>
   </ng-container>
-  <div class="msg right-msg" *ngIf="editAnswer.edit && messageText ===editAnswer.index">
+  <div class="edit-area" *ngIf="editAnswer.edit && messageText ===editAnswer.index">
 
 
     <ng-container *ngTemplateOutlet="editTheAnswer;"></ng-container>
@@ -117,16 +120,16 @@
 </ng-template>
 
 <ng-template #editTheAnswer>
-  <form *ngIf="editAnswer.edit" class="w-full">
-    <section class="msger-inputarea">
+  <form *ngIf="editAnswer.edit" class="edit-area">
+    <section class="msger-inputarea ">
       <p>Question : {{editAnswer.section}}</p>
       <div class="start-date-container" *ngFor="let eachField of questionsAndUsersResponse[indexToBeShown].fields">
         <label for="ids">{{eachField.name}}</label>
         <input [type]="eachField.type" [name]="eachField.key" [(ngModel)]="eachField.value" [ngModelOptions]="
           {standalone: true}">
       </div>
-      <textarea type="text" class="msger-input" #editAnswerText></textarea>
-      <div class="flex justify-end">
+      <textarea type="text" class="msger-input" #editAnswerText id="input-text"></textarea>
+      <div class="flex-buttons">
 
         <button type="button" class="msger-send-btn" title="Click send and jump to another section"
           (click)="cancelEdit()">Cancel</button>

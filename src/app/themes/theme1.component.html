@@ -1,164 +1,156 @@
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resume</title>
-</head>
 
-<body>
-    <button type="button" (click)="convertToPdf()">PDF📄</button>
+    <button type="button" class="absolute" (click)="convertToImage()">PDF📄</button>
+    <div >
+        <div class="px-20" >
+            <div id="pdf-content">
 
-    <div class="px-20" id="pdf-content">
+                <div class="pdf-container" >
 
-        <div class="max-w-full  rounded-xl	 overflow-hidden shadow-lg">
+                    <div >
 
-            <div class="container ">
+                        <section  class="about-section">
+                            <div>
 
-                <div class="flex flex-col gap-1.5	mx-auto p-10 pt-15">
+                                <h3 >
+                                    {{resumeSummary.contactInfo[0]?.fields[0].value}}
+                                </h3>
+                                <div >
+                                    {{resumeSummary.contactInfo[0]?.fields[1].value}} |
+                                    {{resumeSummary.contactInfo[0]?.fields[2].value}} |
+                                    {{resumeSummary.contactInfo[0]?.fields[3].value}}
 
-                    <h3 class="text-2xl font-bold">
-                        {{resumeSummary.contactInfo[0]?.fields[0].value}}
-                    </h3>
-                    <div class="font-bold text-sm	">
-                        {{resumeSummary.contactInfo[0]?.fields[1].value}} |
-                        {{resumeSummary.contactInfo[0]?.fields[2].value}} |
-                        {{resumeSummary.contactInfo[0]?.fields[3].value}}
+                                </div>
+                            </div>
+                            <div class="summary ">
 
-                    </div>
-                    <div class="text-1xl ">
+                                {{resumeSummary.summary[0].answer}}
+                            </div>
 
-                        {{resumeSummary.summary[0].answer}}
-                    </div>
-                    <div>
+                        </section>
+                        <section class="experiece-section" *ngIf="!resumeSummary.Experience[0].skipped">
 
+                            <div class="bg-div">
+                                <span>WORK EXPERIENCE</span>
+                            </div>
+
+                            <div >
+
+                                <div  *ngFor="let exp of resumeSummary.Experience ">
+                                    <ng-container *ngIf="!exp.skipped">
+                                        <div class="info-date-container">
+                                            <p class="info-heading">{{exp.fields[0].value}} | {{exp.fields[1].value}} </p>
+                                            <p >{{exp.fields[2].value | date:'longDate'}} - {{exp.fields[3].value |
+                                                date:'longDate' || ' present'}}</p>
+                                        </div>
+
+                                        <div class="info-response">
+                                            <p >
+                                                {{exp.answer}}
+                                            </p>
+                                        </div>
+                                    </ng-container>
+                                </div>
+                            </div>
+                        </section>
+                        <section class="skills" *ngIf="!resumeSummary.skills[0].skipped">
+
+                            <div  class="bg-div">
+                                SKILLS
+                            </div>
+                            <div class="info-response">
+                                <p>{{resumeSummary.skills[0].answer}}</p>
+                            </div>
+                        </section>
+                        <section class="education" *ngIf="!resumeSummary.Education[0].skipped">
+
+                            <div  class="bg-div">
+                                EDUCATION
+                            </div>
+                            <div>
+
+                                <div *ngFor="let exp of resumeSummary.Education ">
+                                    <div  class="info-date-container">
+                                        <p class="grow font-bold">{{exp.fields[0].value}} | {{exp.fields[1].value}} </p>
+                                        <p class="none">{{exp.fields[2].value | date:'longDate'}} - {{exp.fields[3].value|
+                                            date:'longDate' || ' present'}}</p>
+                                    </div>
+
+                                    <div class="info-response">
+                                        <p>
+                                            {{exp.answer}}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        <section class="projects" *ngIf="!resumeSummary.Projects[0].skipped">
+
+                            <div  class="bg-div" >
+                                PROJECTS
+                            </div>
+                            <div >
+
+                                <div *ngFor="let exp of resumeSummary.Projects ">
+                                    <div class="info-date-container">
+                                        <p class="grow font-bold">{{exp.fields[0].value}} </p>
+                                        <p class="none">{{exp.fields[1].value | date:'longDate'}} - {{exp.fields[2].value|
+                                            date:'longDate' || ' present'}}</p>
+                                    </div>
+
+                                    <div  class="info-response">
+                                        <p>
+                                            {{exp.answer}}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        <section class="certifications" *ngIf="!resumeSummary.Certifications[0].skipped">
+
+                            <div   class="bg-div">
+                                CERTIFICATIONS
+                            </div>
+                            <div >
+
+                                <div class="job" *ngFor="let exp of resumeSummary.Certifications ">
+                                    <div class="info-date-container">
+                                        <p class="grow font-bold">{{exp.fields[0].value}} </p>
+                                        <p class="none">{{exp.fields[1].value | date:'longDate'}} - {{exp.fields[2].value|
+                                            date:'longDate' || ' present'}}</p>
+                                    </div>
+
+                                    <div  class="info-response">
+                                        <p>
+                                            {{exp.answer}}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        <section class="Languages" *ngIf="!resumeSummary.Languages[0].skipped">
+
+                            <div  class="bg-div">
+                                LANGUAGES
+                            </div>
+                            <div  class="info-response">
+                                <p>{{resumeSummary.Hobbies[0].answer}}</p>
+
+                            </div>
+                        </section>
+                        <section class="interests" *ngIf="!resumeSummary.Hobbies[0].skipped">
+
+                            <div  class="bg-div">
+                                INTERESTS
+                            </div>
+                            <div  class="info-response">
+                                <p>{{resumeSummary.Languages[0].answer}}</p>
+                            </div>
+                        </section>
                     </div>
                 </div>
-                <section class="experiece-section" *ngIf="!resumeSummary.Experience[0].skipped">
-
-                    <div class="max-w-full text-l font-bold p-1 pl-10 mt-4 bg-gray-300		 ">
-                        WORK EXPERIENCE
-                    </div>
-
-                    <div class="flex flex-col gap-1.5	mx-auto p-10 pt-7">
-
-                        <div class="job" *ngFor="let exp of resumeSummary.Experience ">
-                            <ng-container *ngIf="!exp.skipped">
-                                <div class="flex experiece-section">
-                                    <p class="grow font-bold">{{exp.fields[0].value}} | {{exp.fields[1].value}} </p>
-                                    <p class="none">{{exp.fields[2].value | date:'longDate'}} - {{exp.fields[3].value |
-                                        date:'longDate' || ' present'}}</p>
-                                </div>
-
-                                <div>
-                                    <p>
-                                        {{exp.answer}}
-                                    </p>
-                                </div>
-                            </ng-container>
-                        </div>
-                    </div>
-                </section>
-                <section class="skills" *ngIf="!resumeSummary.skills[0].skipped">
-
-                    <div class="max-w-full text-l font-bold p-1 pl-10 mt-4 bg-gray-300">
-                        SKILLS
-                    </div>
-                    <div class="skills mx-auto p-10 pt-10">
-                        {{resumeSummary.skills[0].answer}}
-                    </div>
-                </section>
-                <section class="education" *ngIf="!resumeSummary.Education[0].skipped">
-
-                    <div class="max-w-full text-l font-bold p-1 pl-10 mt-4 bg-gray-300		 ">
-                        EDUCATION
-                    </div>
-                    <div class="flex flex-col gap-1.5	mx-auto p-10 pt-7">
-
-                        <div class="job" *ngFor="let exp of resumeSummary.Education ">
-                            <div class="flex experiece-section">
-                                <p class="grow font-bold">{{exp.fields[0].value}} | {{exp.fields[1].value}} </p>
-                                <p class="none">{{exp.fields[2].value | date:'longDate'}} - {{exp.fields[3].value|
-                                    date:'longDate' || ' present'}}</p>
-                            </div>
-
-                            <div>
-                                <p>
-                                    {{exp.answer}}
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                <section class="projects" *ngIf="!resumeSummary.Projects[0].skipped">
-
-                    <div class="max-w-full text-l font-bold p-1 pl-10 mt-4 bg-gray-300		 ">
-                        PROJECTS
-                    </div>
-                    <div class="flex flex-col gap-1.5	mx-auto p-10 pt-7">
-
-                        <div class="job" *ngFor="let exp of resumeSummary.Projects ">
-                            <div class="flex experiece-section">
-                                <p class="grow font-bold">{{exp.fields[0].value}} </p>
-                                <p class="none">{{exp.fields[1].value | date:'longDate'}} - {{exp.fields[2].value|
-                                    date:'longDate' || ' present'}}</p>
-                            </div>
-
-                            <div>
-                                <p>
-                                    {{exp.answer}}
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                <section class="certifications" *ngIf="!resumeSummary.Certifications[0].skipped">
-
-                    <div class="max-w-full text-l font-bold p-1 pl-10 mt-4 bg-gray-300		 ">
-                        CERTIFICATIONS
-                    </div>
-                    <div class="flex flex-col gap-1.5	mx-auto p-10 pt-7">
-
-                        <div class="job" *ngFor="let exp of resumeSummary.Certifications ">
-                            <div class="flex experiece-section">
-                                <p class="grow font-bold">{{exp.fields[0].value}} </p>
-                                <p class="none">{{exp.fields[1].value | date:'longDate'}} - {{exp.fields[2].value|
-                                    date:'longDate' || ' present'}}</p>
-                            </div>
-
-                            <div>
-                                <p>
-                                    {{exp.answer}}
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                <section class="Languages" *ngIf="!resumeSummary.Languages[0].skipped">
-
-                    <div class="max-w-full text-l font-bold p-1 pl-10 mt-4 bg-gray-300">
-                        LANGUAGES
-                    </div>
-                    <div class="skills mx-auto p-10 pt-10">
-                        <p>{{resumeSummary.Hobbies[0].answer}}</p>
-
-                    </div>
-                </section>
-                <section class="interests" *ngIf="!resumeSummary.Hobbies[0].skipped">
-
-                    <div class="max-w-full text-l font-bold p-1 pl-10 mt-4 bg-gray-300">
-                        INTERESTS
-                    </div>
-                    <div class="skills mx-auto p-10 pt-10">
-                        <p>{{resumeSummary.Languages[0].answer}}</p>
-                    </div>
-                </section>
             </div>
         </div>
-    </div>
 
 
-</body>
 
-</html>

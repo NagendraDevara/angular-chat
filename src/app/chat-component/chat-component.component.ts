@@ -92,6 +92,8 @@ export class ChatComponentComponent {
     const questionType = this.questionsAndUsersResponse[this.countOfanswer].type;
 
     this.questionsAndUsersResponse[this.countOfanswer].answer = answer;
+    let textArea:any = document.getElementById("input-text");
+    textArea.value='';
     this.countOfanswer++;
     this.answerCount.push(this.countOfanswer);
     if (this.countOfanswer == this.questionsAndUsersResponse.length) {
@@ -101,6 +103,9 @@ export class ChatComponentComponent {
   }
   continueToAddMore(index: any) {
     const objectToInsert = structuredClone(this.questionsAndUsersResponse[index]);
+    objectToInsert.fields?.map((e:any)=>{
+      e.value ='';
+    })
     objectToInsert.question = 'Add one more ' + objectToInsert.type?.toLowerCase();
     this.sendResponse('');
     this.indexToBeShown =index+1;

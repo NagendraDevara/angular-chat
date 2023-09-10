@@ -1,0 +1,29 @@
+.pdf-container{
+    margin:2rem;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    padding: 2em;
+}
+section{
+    margin-bottom: 1em;}
+.summary{
+    margin-top: 0.5em ;
+}
+.bg-div{
+    background-color: rgb(187, 179, 179);
+    padding: 0.4em;
+    font-weight: 550;
+}
+.info-heading{
+    font-weight: 550;
+}
+.info-date-container{
+ display: flex;
+ justify-content: space-between;
+}
+
+.info-response{
+    margin-top: 2px;
+    margin-bottom: 5px;
+}
+
