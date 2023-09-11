@@ -37,12 +37,12 @@ export class theme1 {
                 // Save the PDF
                 doc.save('sample-document.pdf');
             },
-            margin: [0, 0, 10, 10],
+            margin: [0, 0, 0, 0],
             autoPaging: 'text',
             x: 0,
             y: 0,
             width: 190, //target width in the PDF document
-            windowWidth: 900 //window width in CSS pixels
+            windowWidth: 1000 //window width in CSS pixels
         });
 
       }
