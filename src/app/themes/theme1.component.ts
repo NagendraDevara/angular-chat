@@ -42,7 +42,7 @@ export class theme1 {
             x: 0,
             y: 0,
             width: 190, //target width in the PDF document
-            windowWidth: 1000 //window width in CSS pixels
+            windowWidth: 1000  //window width in CSS pixels
         });
 
       }
