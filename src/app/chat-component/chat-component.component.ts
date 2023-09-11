@@ -110,7 +110,7 @@ export class ChatComponentComponent {
     this.sendResponse('');
     this.indexToBeShown =index+1;
     this.questionsAndUsersResponse.splice(this.indexToBeShown, 0, objectToInsert);
-    this.editAnswer = { edit: true, index: this.indexToBeShown, section:'saddsa',edittheSameAnswer:false }
+    this.editAnswer = { edit: true, index: this.indexToBeShown, section:objectToInsert.question,edittheSameAnswer:false }
 
   }
 

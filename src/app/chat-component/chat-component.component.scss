@@ -238,3 +238,15 @@
   cursor: pointer;
   transition: background 0.23s;
 }
+
+// @media screen and (width <= 768px) {
+//   body{
+//     background:red;
+//   }
+// }
+
+@media (max-width: 640px) {
+  .start-end-dates{
+    flex-direction: column;
+  }
+}
